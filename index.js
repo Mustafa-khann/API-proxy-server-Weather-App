@@ -9,10 +9,13 @@ const app = express();
 
 const limiter = rateLimit({
     windowMs: 10*60*1000,
-    max: 5
+    max: 15
 })
 app.use(limiter)
 app.set('trust proxy', 1)
+
+// Set static folder
+app.use(express.static('public'))
 
 // route
 app.use('/api', require('./routes'))
